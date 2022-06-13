@@ -4,21 +4,21 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / Pinia
+[Documentation de l'API](../index.md) / [pinia](../modules/pinia.md) / Pinia
 
 # Interface: Pinia
 
 [pinia](../modules/pinia.md).Pinia
 
-Every application must own its own pinia to be able to create stores
+Chaque application doit posséder son propre pinia pour pouvoir créer des stores
 
-## Hierarchy
+## Hiérarchie
 
 - **`Pinia`**
 
   ↳ [`TestingPinia`](pinia_testing.TestingPinia.md)
 
-## Properties
+## Propriétés
 
 ### state
 
@@ -26,48 +26,48 @@ Every application must own its own pinia to be able to create stores
 
 root state
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/rootStore.ts:51](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/rootStore.ts#L51)
 
-## Methods
+## Méthodes
 
 ### install
 
 ▸ **install**(`app`): `void`
 
-#### Parameters
+#### Paramètres
 
 | Name | Type |
 | :------ | :------ |
 | `app` | `App`<`any`\> |
 
-#### Returns
+#### Renvoie
 
 `void`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/rootStore.ts:46](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/rootStore.ts#L46)
 
 ___
 
-### use
+### utiliser
 
 ▸ **use**(`plugin`): [`Pinia`](pinia.Pinia.md)
 
-Adds a store plugin to extend every store
+Ajout d'un plugin de store pour étendre chaque store
 
-#### Parameters
+#### Paramètres
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `plugin` | [`PiniaPlugin`](pinia.PiniaPlugin.md) | store plugin to add |
+| `plugin` | [`PiniaPlugin`](pinia.PiniaPlugin.md) | plugin de store à ajouter |
 
-#### Returns
+#### Renvoie
 
 [`Pinia`](pinia.Pinia.md)
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/rootStore.ts:58](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/rootStore.ts#L58)

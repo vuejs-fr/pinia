@@ -5,41 +5,41 @@
   title="Learn all about getters in Pinia"
 />
 
-Getters are exactly the equivalent of [computed values](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#computed-values) for the state of a Store. They can be defined with the `getters` property in `defineStore()`. They receive the `state` as the first parameter **to encourage** the usage of arrow function:
+Les Getters sont exactement l'équivalent des [valeurs calculées](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#computed-values) pour l'état d'un Store. Ils peuvent être définis avec la propriété `getters` dans `defineStore()`. Ils reçoivent le `state` comme premier paramètre **pour encourager** l'utilisation de la fonction flèche :
 
 ```js
-export const useStore = defineStore('main', {
+export const useStore = defineStore("main", {
   state: () => ({
     counter: 0,
   }),
   getters: {
     doubleCount: (state) => state.counter * 2,
   },
-})
+});
 ```
 
-Most of the time, getters will only rely on the state, however, they might need to use other getters. Because of this, we can get access to the _whole store instance_ through `this` when defining a regular function **but it is necessary to define the type of the return type (in TypeScript)**. This is due to a known limitation in TypeScript and **doesn't affect getters defined with an arrow function nor getters not using `this`**:
+La plupart du temps, les getters ne s'appuieront que sur l'état, cependant, ils peuvent avoir besoin d'utiliser d'autres getters. Pour cette raison, nous pouvons avoir accès à _l'instance du store entier_ par le biais de `this` lors de la définition d'une fonction régulière **mais il est nécessaire de définir le type du retour (en TypeScript)**. Ceci est dû à une limitation connue de TypeScript et **n'affecte pas les getters définis avec une fonction flèche ni les getters n'utilisant pas `this`** :
 
 ```ts
-export const useStore = defineStore('main', {
+export const useStore = defineStore("main", {
   state: () => ({
     counter: 0,
   }),
   getters: {
-    // automatically infers the return type as a number
+    // déduit automatiquement que le type de retour est un nombre.
     doubleCount(state) {
-      return state.counter * 2
+      return state.counter * 2;
     },
-    // the return type **must** be explicitly set
+    // le type de retour **doit** être défini explicitement
     doublePlusOne(): number {
-      // autocompletion and typings for the whole store ✨
-      return this.doubleCount + 1
+      // autocomplétion et typages pour l'ensemble du store ✨.
+      return this.doubleCount + 1;
     },
   },
-})
+});
 ```
 
-Then you can access the getter directly on the store instance:
+Vous pouvez alors accéder au getter directement sur l'instance du store :
 
 ```vue
 <template>
@@ -49,66 +49,66 @@ Then you can access the getter directly on the store instance:
 <script>
 export default {
   setup() {
-    const store = useStore()
+    const store = useStore();
 
-    return { store }
+    return { store };
   },
-}
+};
 </script>
 ```
 
-## Accessing other getters
+## Accès à d'autres récupérateurs
 
-As with computed properties, you can combine multiple getters. Access any other getter via `this`. Even if you are not using TypeScript, you can hint your IDE for types with the [JSDoc](https://jsdoc.app/tags-returns.html):
+Comme pour les propriétés calculées, vous pouvez combiner plusieurs getters. Accédez à n'importe quel autre getter via `this`. Même si vous n'utilisez pas TypeScript, vous pouvez indiquer à votre IDE les types avec la [JSDoc](https://jsdoc.app/tags-returns.html) :
 
 ```js
-export const useStore = defineStore('main', {
+export const useStore = defineStore("main", {
   state: () => ({
     counter: 0,
   }),
   getters: {
-    // type is automatically inferred because we are not using `this`
+    // Le type est automatiquement déduit parce que nous n'utilisons pas `this`.
     doubleCount: (state) => state.counter * 2,
-    // here we need to add the type ourselves (using JSDoc in JS). We can also
-    // use this to document the getter
+    // ici, nous devons ajouter le type nous-mêmes (en utilisant JSDoc en JS). Nous pouvons également
+    // utiliser ceci pour documenter le getter
     /**
-     * Returns the counter value times two plus one.
+     * Renvoie la valeur du compteur multipliée par deux plus un.
      *
      * @returns {number}
      */
     doubleCountPlusOne() {
-      // autocompletion ✨
-      return this.doubleCount + 1
+      // autocomplétion ✨
+      return this.doubleCount + 1;
     },
   },
-})
+});
 ```
 
-## Passing arguments to getters
+## Passer des arguments aux getters
 
-_Getters_ are just _computed_ properties behind the scenes, so it's not possible to pass any parameters to them. However, you can return a function from the _getter_ to accept any arguments:
+Les _Getters_ ne sont que des propriétés _calculées_ en coulisse, il n'est donc pas possible de leur passer des paramètres. Cependant, vous pouvez retourner une fonction à partir du _getter_ pour accepter des arguments :
 
 ```js
-export const useStore = defineStore('main', {
+export const useStore = defineStore("main", {
   getters: {
     getUserById: (state) => {
-      return (userId) => state.users.find((user) => user.id === userId)
+      return (userId) => state.users.find((user) => user.id === userId);
     },
   },
-})
+});
 ```
 
-and use in component:
+et l'utilisation en composant :
 
 ```vue
 <script>
 export default {
   setup() {
-    const store = useStore()
+    const store = useStore();
 
-    return { getUserById: store.getUserById }
+    return { getUserById: store.getUserById };
   },
-}
+};
 </script>
 
 <template>
@@ -116,65 +116,65 @@ export default {
 </template>
 ```
 
-Note that when doing this, **getters are not cached anymore**, they are simply functions that you invoke. You can however cache some results inside of the getter itself, which is uncommon but should prove more performant:
+Notez que lorsque vous faites cela, **les getters ne sont plus mis en cache**, ils sont simplement des fonctions que vous invoquez. Vous pouvez cependant mettre en cache certains résultats à l'intérieur du getter lui-même, ce qui est peu courant mais devrait s'avérer plus performant :
 
 ```js
-export const useStore = defineStore('main', {
+export const useStore = defineStore("main", {
   getters: {
     getActiveUserById(state) {
-      const activeUsers = state.users.filter((user) => user.active)
-      return (userId) => activeUsers.find((user) => user.id === userId)
+      const activeUsers = state.users.filter((user) => user.active);
+      return (userId) => activeUsers.find((user) => user.id === userId);
     },
   },
-})
+});
 ```
 
-## Accessing other stores getters
+## Accès aux getters d'autres stores
 
-To use another store getters, you can directly _use it_ inside of the _getter_:
+Pour utiliser les getters d'autres stores, vous pouvez directement les _utiliser_ à l'intérieur du _getter_ :
 
 ```js
-import { useOtherStore } from './other-store'
+import { useOtherStore } from "./other-store";
 
-export const useStore = defineStore('main', {
+export const useStore = defineStore("main", {
   state: () => ({
     // ...
   }),
   getters: {
     otherGetter(state) {
-      const otherStore = useOtherStore()
-      return state.localData + otherStore.data
+      const otherStore = useOtherStore();
+      return state.localData + otherStore.data;
     },
   },
-})
+});
 ```
 
-## Usage with `setup()`
+## Utilisation avec `setup()`
 
-You can directly access any getter as a property of the store (exactly like state properties):
+Vous pouvez accéder directement à n'importe quel getter comme une propriété du store (exactement comme les propriétés d'état) :
 
 ```js
 export default {
   setup() {
-    const store = useStore()
+    const store = useStore();
 
-    store.counter = 3
-    store.doubleCount // 6
+    store.counter = 3;
+    store.doubleCount; // 6
   },
-}
+};
 ```
 
-## Usage with the Options API
+## Utilisation avec l'API Options
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/access-pinia-getters-in-the-options-api"
   title="Access Pinia Getters via the Options API"
 />
 
-For the following examples, you can assume the following store was created:
+Pour les exemples suivants, vous pouvez supposer que le store suivant a été créé :
 
 ```js
-// Example File Path:
+// Exemple de chemin de fichier :
 // ./src/stores/counterStore.js
 
 import { defineStore } from 'pinia',
@@ -184,37 +184,37 @@ const useCounterStore = defineStore('counterStore', {
     counter: 0
   }),
   getters: {
-    doubleCounter(state) {
-      return state.counter * 2
+    doubleCounter() {
+      return this.counter * 2
     }
   }
 })
 ```
 
-### With `setup()`
+### Avec `setup()`
 
-While Composition API is not for everyone, the `setup()` hook can make using Pinia easier to work with in the Options API. No extra map helper functions needed!
+Bien que l'API de composition ne soit pas pour tout le monde, le hook `setup()` peut rendre l'utilisation de Pinia plus facile dans l'API d'options. Aucune fonction supplémentaire d'aide à mapper n'est nécessaire !
 
 ```js
-import { useCounterStore } from '../stores/counterStore'
+import { useCounterStore } from "../stores/counterStore";
 
 export default {
   setup() {
-    const counterStore = useCounterStore()
+    const counterStore = useCounterStore();
 
-    return { counterStore }
+    return { counterStore };
   },
   computed: {
     quadrupleCounter() {
-      return this.counterStore.doubleCounter * 2
+      return counterStore.doubleCounter * 2;
     },
   },
-}
+};
 ```
 
-### Without `setup()`
+### Sans `setup()`
 
-You can use the same `mapState()` function used in the [previous section of state](./state.md#options-api) to map to getters:
+Vous pouvez utiliser la même fonction `mapState()` que celle utilisée dans la [section précédente de state](./state.md#options-api) pour faire correspondre les getters :
 
 ```js
 import { mapState } from 'pinia'
@@ -222,13 +222,13 @@ import { useCounterStore } from '../stores/counterStore'
 
 export default {
   computed: {
-    // gives access to this.doubleCounter inside the component
-    // same as reading from store.doubleCounter
+    // donne accès à this.doubleCounter à l'intérieur du composant.
+    // identique à la lecture de store.doubleCounter
     ...mapState(useCounterStore, ['doubleCount'])
-    // same as above but registers it as this.myOwnName
+    // même chose que ci-dessus mais l'enregistre comme this.myOwnName
     ...mapState(useCounterStore, {
       myOwnName: 'doubleCounter',
-      // you can also write a function that gets access to the store
+      // vous pouvez également écrire une fonction qui obtient l'accès au store
       double: store => store.doubleCount,
     }),
   },

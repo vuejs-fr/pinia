@@ -1,18 +1,18 @@
-# Composing Stores
+# Composer des Stores
 
-Composing stores is about having stores that use each other and there is one rule to follow:
+Composer des stores consiste à avoir des stores qui s'utilisent les uns les autres et il y a une règle à suivre :
 
-If **two or more stores use each other**, they cannot create an infinite loop through _getters_ or _actions_. They cannot **both** directly read each other state in their setup function:
+Si **deux stores ou plus s'utilisent mutuellement**, ils ne peuvent pas créer une boucle infinie par le biais de _getters_ ou d'_actions_. Ils ne peuvent pas **tous les deux** lire directement l'état de l'autre dans leur fonction de configuration :
 
 ```js
 const useX = defineStore('x', () => {
   const y = useY()
 
-  // ❌ This is not possible because y also tries to read x.name
+  // ❌ Ce n'est pas possible car y essaie aussi de lire x.name
   y.name
 
   function doSomething() {
-    // ✅ Read y properties in computed or actions
+    // ✅ Lire les propriétés des y dans les calculs ou les actions
     const yName = y.name
     // ...
   }
@@ -25,11 +25,11 @@ const useX = defineStore('x', () => {
 const useY = defineStore('y', () => {
   const x = useX()
 
-  // ❌ This is not possible because x also tries to read y.name
+  // ❌ Ce n'est pas possible car x essaie aussi de lire y.name
   x.name
 
   function doSomething() {
-    // ✅ Read x properties in computed or actions
+    // ✅ Lire les propriétés de x dans les calculs ou les actions
     const xName = x.name
     // ...
   }
@@ -40,18 +40,18 @@ const useY = defineStore('y', () => {
 })
 ```
 
-## Nested stores
+## Les stores imbriqués
 
-Note that if one store uses another store, **there is no need to create a new store in a separate file**, you can directly import it. Think of it as nesting.
+Notez que si un store utilise un autre store, **il n'est pas nécessaire de créer un nouveau store dans un fichier séparé**, vous pouvez l'importer directement. Considérez cela comme une imbrication.
 
-You can call `useOtherStore()` at the top of any getter or action:
+Vous pouvez appeler `useOtherStore()` en haut de n'importe quel getter ou action :
 
 ```js
 import { useUserStore } from './user'
 
 export const cartStore = defineStore('cart', {
   getters: {
-    // ... other getters
+    // ... autres getters
     summary(state) {
       const user = useUserStore()
 
@@ -69,9 +69,9 @@ export const cartStore = defineStore('cart', {
 })
 ```
 
-## Shared Getters
+## Getters partagés
 
-You can simply call `useOtherStore()` inside a _getter_:
+Vous pouvez simplement appeler `useOtherStore()` à l'intérieur d'un _getter_ :
 
 ```js
 import { defineStore } from 'pinia'
@@ -88,9 +88,9 @@ export const useCartStore = defineStore('cart', {
 })
 ```
 
-## Shared Actions
+## Actions partagées
 
-The same applies to _actions_:
+Il en va de même pour les _actions_ :
 
 ```js
 import { defineStore } from 'pinia'
@@ -103,7 +103,7 @@ export const useCartStore = defineStore('cart', {
 
       try {
         await apiOrderCart(user.token, this.items)
-        // another action
+        // une autre action
         this.emptyCart()
       } catch (err) {
         displayError(err)

@@ -4,14 +4,14 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / SubscriptionCallbackMutationPatchFunction
+[Documentation de l'API](../index.md) / [pinia](../modules/pinia.md) / SubscriptionCallbackMutationPatchFunction
 
 # Interface: SubscriptionCallbackMutationPatchFunction
 
 [pinia](../modules/pinia.md).SubscriptionCallbackMutationPatchFunction
 
-Context passed to a subscription callback when `store.$patch()` is called
-with a function.
+Contexte transmis à un callback d'abonnement lorsque `store.$patch()` est appelé
+avec une fonction.
 
 ## Hierarchy
 
@@ -19,15 +19,15 @@ with a function.
 
   ↳ **`SubscriptionCallbackMutationPatchFunction`**
 
-## Properties
+## Propriétés
 
-### events
+### événements
 
 • **events**: `DebuggerEvent`[]
 
-DEV ONLY. Array of all the mutations done inside of the callback.
+DEV ONLY. Tableau de toutes les mutations effectuées à l'intérieur du callback.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:129](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L129)
 
@@ -37,13 +37,13 @@ ___
 
 • **storeId**: `string`
 
-`id` of the store doing the mutation.
+`id` du store qui effectue la mutation.
 
 #### Inherited from
 
 [_SubscriptionCallbackMutationBase](pinia._SubscriptionCallbackMutationBase.md).[storeId](pinia._SubscriptionCallbackMutationBase.md#storeid)
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:81](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L81)
 
@@ -53,12 +53,12 @@ ___
 
 • **type**: [`patchFunction`](../enums/pinia.MutationType.md#patchfunction)
 
-Type of the mutation.
+Type de la mutation
 
-#### Overrides
+#### Remplacement de
 
 [_SubscriptionCallbackMutationBase](pinia._SubscriptionCallbackMutationBase.md).[type](pinia._SubscriptionCallbackMutationBase.md#type)
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:124](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L124)

@@ -10,18 +10,18 @@ sidebarDepth: 3
 
 [@pinia/testing](../modules/pinia_testing.md).TestingOptions
 
-## Properties
+## Propriétés
 
 ### fakeApp
 
 • `Optional` **fakeApp**: `boolean`
 
-Creates an empty App and calls `app.use(pinia)` with the created testing
-pinia. This is allows you to use plugins while unit testing stores as
-plugins **will wait for pinia to be installed in order to be executed**.
-Defaults to false.
+Crée une application vide et appelle `app.use(pinia)` avec le test créé
+pinia. Ceci vous permet d'utiliser des plugins tout en stockant des tests unitaires, car
+Les plugins **attendent que pinia soit installé pour être exécutés**.
+La valeur par défaut est false.
 
-#### Defined in
+#### Défini dans
 
 [packages/testing/src/testing.ts:57](https://github.com/vuejs/pinia/blob/2b998ee/packages/testing/src/testing.ts#L57)
 
@@ -31,10 +31,10 @@ ___
 
 • `Optional` **initialState**: [`StateTree`](../modules/pinia.md#statetree)
 
-Allows defining a partial initial state of all your stores. This state gets applied after a store is created,
-allowing you to only set a few properties that are required in your test.
+Permet de définir un état initial partiel de tous vos stores. Cet état est appliqué après la création d'un store,
+ce qui vous permet de ne définir que les quelques propriétés requises dans votre test.
 
-#### Defined in
+#### Défini dans
 
 [packages/testing/src/testing.ts:27](https://github.com/vuejs/pinia/blob/2b998ee/packages/testing/src/testing.ts#L27)
 
@@ -44,10 +44,10 @@ ___
 
 • `Optional` **plugins**: [`PiniaPlugin`](pinia.PiniaPlugin.md)[]
 
-Plugins to be installed before the testing plugin. Add any plugins used in
-your application that will be used while testing.
+Les plugins à installer avant le plugin de test. Ajoutez tous les plugins utilisés dans
+votre application qui sera utilisée lors des tests.
 
-#### Defined in
+#### Défini dans
 
 [packages/testing/src/testing.ts:33](https://github.com/vuejs/pinia/blob/2b998ee/packages/testing/src/testing.ts#L33)
 
@@ -57,13 +57,13 @@ ___
 
 • `Optional` **stubActions**: `boolean`
 
-When set to false, actions are only spied, they still get executed. When
-set to true, actions will be replaced with spies, resulting in their code
-not being executed. Defaults to true. NOTE: when providing `createSpy()`,
-it will **only** make the `fn` argument `undefined`. You still have to
-handle this in `createSpy()`.
+Lorsqu'il est défini à false, les actions sont seulement espionnées, elles sont toujours exécutées. Lorsque
+défini à true, les actions seront remplacées par des espions, ce qui aura pour conséquence que leur code
+code ne sera pas exécuté. La valeur par défaut est true. NOTE : lorsque vous fournissez `createSpy()`,
+il rendra **seulement** l'argument `fn` `undefined`. Vous devez toujours
+gérer cela dans `createSpy()`.
 
-#### Defined in
+#### Défini dans
 
 [packages/testing/src/testing.ts:42](https://github.com/vuejs/pinia/blob/2b998ee/packages/testing/src/testing.ts#L42)
 
@@ -73,45 +73,45 @@ ___
 
 • `Optional` **stubPatch**: `boolean`
 
-When set to true, calls to `$patch()` won't change the state. Defaults to
-false. NOTE: when providing `createSpy()`, it will **only** make the `fn`
-argument `undefined`. You still have to handle this in `createSpy()`.
+Lorsqu'il a la valeur true, les appels à `$patch()` ne changeront pas l'état. La valeur par défaut est
+false. NOTE : lorsque vous fournissez `createSpy()`, il rendra **seulement** l'argument `fn`
+l'argument `undefined`. Vous devez toujours le gérer dans `createSpy()`.
 
-#### Defined in
+#### Défini dans
 
 [packages/testing/src/testing.ts:49](https://github.com/vuejs/pinia/blob/2b998ee/packages/testing/src/testing.ts#L49)
 
-## Methods
+## Méthodes
 
 ### createSpy
 
 ▸ `Optional` **createSpy**(`fn?`): (...`args`: `any`[]) => `any`
 
-Function used to create a spy for actions and `$patch()`. Pre-configured
-with `jest.fn()` in jest projects or `vi.fn()` in vitest projects.
+Fonction utilisée pour créer un espion pour les actions et `$patch()`. Pré-configuré
+avec `jest.fn()` dans les projets jest ou `vi.fn()` dans les projets vitest.
 
-#### Parameters
+#### Paramètres
 
 | Name | Type |
 | :------ | :------ |
 | `fn?` | (...`args`: `any`[]) => `any` |
 
-#### Returns
+#### Renvoie
 
 `fn`
 
 ▸ (...`args`): `any`
 
-##### Parameters
+##### Paramètres
 
 | Name | Type |
 | :------ | :------ |
 | `...args` | `any`[] |
 
-##### Returns
+##### Renvoie
 
 `any`
 
-#### Defined in
+#### Défini dans
 
 [packages/testing/src/testing.ts:63](https://github.com/vuejs/pinia/blob/2b998ee/packages/testing/src/testing.ts#L63)

@@ -4,7 +4,7 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / @pinia/nuxt
+[Documentation de l'API](../index.md) / @pinia/nuxt
 
 # Module: @pinia/nuxt
 
@@ -12,23 +12,23 @@ sidebarDepth: 3
 
 - [PiniaNuxtOptions](../interfaces/pinia_nuxt.PiniaNuxtOptions.md)
 
-## Functions
+## Fonctions
 
-### default
+### par défaut
 
 ▸ **default**(`this`, `moduleOptions`): `void` \| `Promise`<`void`\>
 
-#### Parameters
+#### Paramètres
 
 | Name | Type |
 | :------ | :------ |
 | `this` | `ModuleThis` |
 | `moduleOptions` | `any` |
 
-#### Returns
+#### Renvoie
 
 `void` \| `Promise`<`void`\>
 
-#### Defined in
+#### Défini dans
 
 node_modules/.pnpm/@nuxt+types@2.15.8/node_modules/@nuxt/types/config/module.d.ts:29

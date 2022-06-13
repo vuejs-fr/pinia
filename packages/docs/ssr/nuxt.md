@@ -1,10 +1,10 @@
 # Nuxt.js
 
-Using Pinia with [Nuxt.js](https://nuxtjs.org/) is easier since Nuxt takes care of a lot of things when it comes to _server side rendering_. For instance, **you don't need to care about serialization nor XSS attacks**.
+L'utilisation de Pinia avec [Nuxt.js](https://nuxtjs.org/) est plus facile car Nuxt s'occupe de beaucoup de choses quand il s'agit du _rendu côté serveur_. Par exemple, **vous n'avez pas besoin de vous soucier de la sérialisation ni des attaques XSS**.
 
 ## Installation
 
-Make sure to install [`@nuxtjs/composition-api`](https://composition-api.nuxtjs.org/) alongside `pinia`:
+Assurez-vous d'installer [`@nuxtjs/composition-api`](https://composition-api.nuxtjs.org/) avec `pinia` :
 
 ```bash
 yarn add pinia @pinia/nuxt @nuxtjs/composition-api
@@ -12,74 +12,74 @@ yarn add pinia @pinia/nuxt @nuxtjs/composition-api
 npm install pinia @pinia/nuxt @nuxtjs/composition-api
 ```
 
-We supply a _module_ to handle everything for you, you only need to add it to `buildModules` in your `nuxt.config.js` file:
+Nous fournissons un _module_ qui s'occupe de tout pour vous, il vous suffit de l'ajouter à `buildModules` dans votre fichier `nuxt.config.js` :
 
 ```js
 // nuxt.config.js
 export default {
-  // ... other options
+  // ... autres options
   buildModules: [
-    // Nuxt 2 only:
+    // Nuxt 2 uniquement :
     // https://composition-api.nuxtjs.org/getting-started/setup#quick-start
-    '@nuxtjs/composition-api/module',
-    '@pinia/nuxt',
+    "@nuxtjs/composition-api/module",
+    "@pinia/nuxt",
   ],
-}
+};
 ```
 
-And that's it, use your store as usual!
+Et c'est tout, utilisez votre store comme d'habitude !
 
-## Using the store outside of `setup()`
+## Utiliser le store en dehors de `setup()`
 
-If you want to use a store outside of `setup()`, remember to pass the `pinia` object to `useStore()`. We added it to [the context](https://nuxtjs.org/docs/2.x/internals-glossary/context) so you have access to it in `asyncData()` and `fetch()`:
+Si vous voulez utiliser un store Nous l'avons ajouté au [contexte](https://nuxtjs.org/docs/2.x/internals-glossary/context) pour que vous y ayez accès dans `asyncData()` et `fetch()` :
 
 ```js
-import { useStore } from '~/stores/myStore'
+import { useStore } from "~/stores/myStore";
 
 export default {
   asyncData({ $pinia }) {
-    const store = useStore($pinia)
+    const store = useStore($pinia);
   },
-}
+};
 ```
 
-## Using the Nuxt context in stores
+## Utilisation du contexte Nuxt dans les stores
 
-You can also use [the context](https://nuxtjs.org/docs/2.x/internals-glossary/context) in any store by using the injected property `$nuxt`:
+Vous pouvez également utiliser [le contexte](https://nuxtjs.org/docs/2.x/internals-glossary/context) dans n'importe quel store en utilisant la propriété injectée `$nuxt` :
 
 ```js
-import { useUserStore } from '~/stores/userStore'
+import { useUserStore } from "~/stores/userStore";
 
-defineStore('cart', {
+defineStore("cart", {
   actions: {
     purchase() {
-      const user = useUserStore()
+      const user = useUserStore();
       if (!user.isAuthenticated()) {
-        this.$nuxt.redirect('/login')
+        this.$nuxt.redirect("/login");
       }
     },
   },
-})
+});
 ```
 
-## Using Pinia alongside Vuex
+## Utilisation de Pinia avec Vuex
 
-It is recommended to **avoid using both Pinia and Vuex** but if you need to use both, you need to tell pinia to not disable it:
+Il est recommandé d' **éviter d'utiliser à la fois Pinia et Vuex** mais si vous devez utiliser les deux, vous devez indiquer à pinia de ne pas le désactiver :
 
 ```js
 // nuxt.config.js
 export default {
   buildModules: [
-    '@nuxtjs/composition-api/module',
-    ['@pinia/nuxt', { disableVuex: false }],
+    "@nuxtjs/composition-api/module",
+    ["@pinia/nuxt", { disableVuex: false }],
   ],
-  // ... other options
-}
+  // ... autre options
+};
 ```
 
 ## TypeScript
 
-If you are using TypeScript or have a `jsconfig.json`, you should also add the types for `context.pinia`:
+Si vous utilisez TypeScript ou si vous avez un `jsconfig.json`, vous devez également ajouter les types pour `context.pinia` :
 
 ```json
 {
@@ -90,4 +90,4 @@ If you are using TypeScript or have a `jsconfig.json`, you should also add the t
 }
 ```
 
-This will also ensure you have autocompletion 😉 .
+Cela vous permettra également d'avoir l'autocomplétion 😉 .

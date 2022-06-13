@@ -1,10 +1,10 @@
-# Migrating from 0.x (v1) to v2
+# Migration de la version 0.x (v1) vers la v2
 
-Starting at version `2.0.0-rc.4`, pinia supports both Vue 2 and Vue 3! This means, all new updates will be applied to this version 2 so both Vue 2 and Vue 3 users can benefit from it. If you are using Vue 3, this doesn't change anything for you as you were already using the rc and you can check [the CHANGELOG](https://github.com/vuejs/pinia/blob/v2/packages/pinia/CHANGELOG.md) for a detailed explanation of everything that changed. Otherwise, **this guide is for you**!
+À partir de la version `2.0.0-rc.4`, pinia supporte à la fois Vue 2 et Vue 3 ! Cela signifie que toutes les nouvelles mises à jour seront appliquées à cette version 2 afin que les utilisateurs de Vue 2 et Vue 3 puissent en bénéficier. Si vous utilisez Vue 3, cela ne change rien pour vous car vous utilisiez déjà la rc et vous pouvez consulter [le CHANGELOG](https://github.com/vuejs/pinia/blob/v2/packages/pinia/CHANGELOG.md) pour une explication détaillée de tout ce qui a changé. Sinon, **ce guide est pour vous** !
 
-## Deprecations
+## Dépréciations
 
-Let's take a look at all the changes you need to apply to your code. First, make sure you are already running the latest 0.x version to see any deprecations:
+Jetons un coup d'oeil à tous les changements que vous devez appliquer à votre code. Tout d'abord, assurez-vous que vous utilisez déjà la dernière version 0.x pour voir les éventuelles dépréciations :
 
 ```shell
 npm i 'pinia@^0.x.x'
@@ -12,31 +12,31 @@ npm i 'pinia@^0.x.x'
 yarn add 'pinia@^0.x.x'
 ```
 
-If you are using ESLint, consider using [this plugin](https://github.com/gund/eslint-plugin-deprecation) to find all deprecated usages. Otherwise, you should be able to see them as they appear crossed. These are the APIs that were deprecated that were removed:
+Si vous utilisez ESLint, pensez à utiliser [ce plugin](https://github.com/gund/eslint-plugin-deprecation) pour trouver tous les usages dépréciés. Sinon, vous devriez être en mesure de les voir tels qu'ils apparaissent croisés. Ce sont les API dépréciées qui ont été supprimées :
 
-- `createStore()` becomes `defineStore()`
-- In subscriptions, `storeName` becomes `storeId`
-- `PiniaPlugin` was renamed `PiniaVuePlugin` (Pinia plugin for Vue 2)
-- `$subscribe()` no longer accepts a _boolean_ as second parameter, pass an object with `detached: true` instead.
-- Pinia plugins no longer directly receive the `id` of the store. Use `store.$id` instead.
+- `createStore()` devient `defineStore()`.
+- Dans les abonnements, `storeName` devient `storeId`.
+- `PiniaPlugin` a été renommé `PiniaVuePlugin` (plugin Pinia pour Vue 2)
+- `$subscribe()` n'accepte plus un _boolean_ comme second paramètre, passez un objet avec `detached : true` à la place.
+- Les plugins Pinia ne reçoivent plus directement l'`id` du store. Utilisez `store.$id` à la place.
 
-## Breaking changes
+## Changements de rupture
 
-After removing these, you can upgrade to v2 with:
+Après les avoir supprimés, vous pouvez mettre à jour vers la v2 avec :
 
 ```shell
 npm i 'pinia@^2.x.x'
-# or with yarn
+# ou avec yarn
 yarn add 'pinia@^2.x.x'
 ```
 
-And start updating your code.
+Et commencez à mettre à jour votre code.
 
-### Generic Store type
+### Générique Type de store
 
-Added in [2.0.0-rc.0](https://github.com/vuejs/pinia/blob/v2/packages/pinia/CHANGELOG.md#200-rc0-2021-07-28)
+Ajouté dans [2.0.0-rc.0](https://github.com/vuejs/pinia/blob/v2/packages/pinia/CHANGELOG.md#200-rc0-2021-07-28)
 
-Replace any usage of the type `GenericStore` with `StoreGeneric`. This is the new generic store type that should accept any kind of store. If you were writing functions using the type `Store` without passing its generics (e.g. `Store<Id, State, Getters, Actions>`), you should also use `StoreGeneric` as the `Store` type without generics creates an empty store type.
+Remplacez toute utilisation du type `GenericStore` par `StoreGeneric`. C'est le nouveau type de store générique qui devrait accepter n'importe quel type de store. Si vous écriviez des fonctions utilisant le type `Store` sans passer ses génériques (par exemple `Store<Id, State, Getters, Actions>`), vous devriez également utiliser `StoreGeneric` car le type `Store` sans générique crée un type de store vide.
 
 ```diff
 -function takeAnyStore(store: Store) {}
@@ -46,9 +46,9 @@ Replace any usage of the type `GenericStore` with `StoreGeneric`. This is the ne
 +function takeAnyStore(store: StoreGeneric) {}
 ```
 
-## `DefineStoreOptions` for plugins
+## `DefineStoreOptions` pour les plugins
 
-If you were writing plugins, using TypeScript, and extending the type `DefineStoreOptions` to add custom options, you should rename it to `DefineStoreOptionsBase`. This type will apply to both setup and options stores.
+Si vous écriviez des plugins, en utilisant TypeScript, et que vous étendiez le type `DefineStoreOptions` pour ajouter des options personnalisées, vous devriez le renommer en `DefineStoreOptionsBase`. Ce type s'appliquera à la fois aux stores de configuration et d'options.
 
 ```diff
  declare module 'pinia' {
@@ -61,9 +61,9 @@ If you were writing plugins, using TypeScript, and extending the type `DefineSto
  }
 ```
 
-## `PiniaStorePlugin` was renamed
+## `PiniaStorePlugin` a été renommé
 
-The type `PiniaStorePlugin` was renamed to `PiniaPlugin`.
+Le type `PiniaStorePlugin` a été renommé en `PiniaPlugin`.
 
 ```diff
 -import { PiniaStorePlugin } from 'pinia'
@@ -75,21 +75,21 @@ The type `PiniaStorePlugin` was renamed to `PiniaPlugin`.
  }
 ```
 
-**Note this change can only be done after upgrading to the latest version of Pinia without deprecations**.
+**Notez que ce changement ne peut être effectué qu'après la mise à niveau vers la dernière version de Pinia sans dépréciations**.
 
-## `@vue/composition-api` version
+## Version de `@vue/composition-api`.
 
-Since pinia now relies on `effectScope()`, you must use at least the version `1.1.0` of `@vue/composition-api`:
+Comme pinia s'appuie désormais sur `effectScope()`, vous devez utiliser au moins la version `1.1.0` de `@vue/composition-api` :
 
 ```shell
 npm i @vue/composition-api@latest
-# or with yarn
+# ou avec yarn
 yarn add @vue/composition-api@latest
 ```
 
-## webpack 4 support
+## support de webpack 4
 
-If you are using webpack 4 (Vue CLI uses webpack 4), you might encounter an error like this:
+Si vous utilisez webpack 4 (Vue CLI utilise webpack 4), vous pouvez rencontrer une erreur comme celle-ci :
 
 ```
 ERROR  Failed to compile with 18 errors
@@ -99,10 +99,10 @@ ERROR  Failed to compile with 18 errors
 Can't import the named export 'computed' from non EcmaScript module (only default export is available)
 ```
 
-This is due to the modernization of dist files to support native ESM modules in Node.js. Files are now using the extension `.mjs` and `.cjs` to let Node benefit from this. To fix this issue you have two possibilities:
+Ceci est dû à la modernisation des fichiers dist pour supporter les modules ESM natifs dans Node.js. Les fichiers utilisent maintenant l'extension `.mjs` et `.cjs` pour permettre à Node d'en bénéficier. Pour résoudre ce problème, vous avez deux possibilités :
 
-- If you are using Vue CLI 4.x, upgrade your dependencies. This should include the fix below.
-  - If upgrading is not possible for you, add this to your `vue.config.js`:
+- Si vous utilisez Vue CLI 4.x, mettez à jour vos dépendances. Cela devrait inclure la correction ci-dessous.
+  - Si la mise à jour n'est pas possible pour vous, ajoutez ceci à votre `vue.config.js` :
     ```js
     // vue.config.js
     module.exports = {
@@ -112,14 +112,14 @@ This is due to the modernization of dist files to support native ESM modules in 
             {
               test: /\.mjs$/,
               include: /node_modules/,
-              type: 'javascript/auto',
+              type: "javascript/auto",
             },
           ],
         },
       },
-    }
+    };
     ```
-- If you are manually handling webpack, you will have to let it know how to handle `.mjs` files:
+- Si vous manipulez manuellement webpack, vous devrez lui faire savoir comment gérer les fichiers `.mjs` :
   ```js
   // webpack.config.js
   module.exports = {
@@ -128,20 +128,20 @@ This is due to the modernization of dist files to support native ESM modules in 
         {
           test: /\.mjs$/,
           include: /node_modules/,
-          type: 'javascript/auto',
+          type: "javascript/auto",
         },
       ],
     },
-  }
+  };
   ```
 
 ## Devtools
 
-Pinia v2 no longer hijacks Vue Devtools v5, it requires Vue Devtools v6. Find the download link on the [Vue Devtools documentation](https://devtools.vuejs.org/guide/installation.html#chrome) for the **beta channel** of the extension.
+Pinia v2 ne détourne plus Vue Devtools v5, elle nécessite Vue Devtools v6. Vous trouverez le lien de téléchargement sur la [documentation Vue Devtools](https://devtools.vuejs.org/guide/installation.html#chrome) pour le **canal beta** de l'extension.
 
 ## Nuxt
 
-If you are using Nuxt, pinia has now it's dedicated Nuxt package 🎉. Install it with:
+Si vous utilisez Nuxt, pinia a maintenant son paquetage Nuxt dédié 🎉. Installez-le avec :
 
 ```shell
 npm i @pinia/nuxt
@@ -149,9 +149,9 @@ npm i @pinia/nuxt
 yarn add @pinia/nuxt
 ```
 
-Also make sure to **update your `@nuxtjs/composition-api` package**.
+Assurez-vous également de **mettre à jour votre paquetage** `@nuxtjs/composition-api`.
 
-Then adapt your `nuxt.config.js` and your `tsconfig.json` if you are using TypeScript:
+Adaptez ensuite votre `nuxt.config.js` et votre `tsconfig.json` si vous utilisez TypeScript :
 
 ```diff
  // nuxt.config.js
@@ -175,4 +175,4 @@ Then adapt your `nuxt.config.js` and your `tsconfig.json` if you are using TypeS
  }
 ```
 
-It is also recommended to give [the dedicated Nuxt section](../ssr/nuxt.md) a read.
+Il est également recommandé de lire [la section dédiée à Nuxt](../ssr/nuxt.md).

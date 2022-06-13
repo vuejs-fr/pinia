@@ -4,31 +4,31 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / SubscriptionCallbackMutationDirect
+[Documentation de l'API](../index.md) / [pinia](../modules/pinia.md) / SubscriptionCallbackMutationDirect
 
 # Interface: SubscriptionCallbackMutationDirect
 
 [pinia](../modules/pinia.md).SubscriptionCallbackMutationDirect
 
-Context passed to a subscription callback when directly mutating the state of
-a store with `store.someState = newValue` or `store.$state.someState =
-newValue`.
+Contexte transmis à une callback d'abonnement lors de la mutation directe de l'état 
+d'un magasin avec `store.someState = newValue` ou `store.$state.someState =
+nouvelleValeur`.
 
-## Hierarchy
+## Hiérarchie
 
 - [`_SubscriptionCallbackMutationBase`](pinia._SubscriptionCallbackMutationBase.md)
 
   ↳ **`SubscriptionCallbackMutationDirect`**
 
-## Properties
+## Propriété
 
-### events
+### événements
 
 • **events**: `DebuggerEvent`
 
-DEV ONLY. Different mutation calls.
+DEV SEULEMENT. Différents appels de mutation.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:96](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L96)
 
@@ -38,13 +38,13 @@ ___
 
 • **storeId**: `string`
 
-`id` of the store doing the mutation.
+`id` du store qui effectue la mutation.
 
-#### Inherited from
+#### Hérité de
 
 [_SubscriptionCallbackMutationBase](pinia._SubscriptionCallbackMutationBase.md).[storeId](pinia._SubscriptionCallbackMutationBase.md#storeid)
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:81](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L81)
 
@@ -54,12 +54,12 @@ ___
 
 • **type**: [`direct`](../enums/pinia.MutationType.md#direct)
 
-Type of the mutation.
+Type de la mutation.
 
-#### Overrides
+#### Remplacement de
 
 [_SubscriptionCallbackMutationBase](pinia._SubscriptionCallbackMutationBase.md).[type](pinia._SubscriptionCallbackMutationBase.md#type)
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:91](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L91)

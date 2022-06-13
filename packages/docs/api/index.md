@@ -1,6 +1,6 @@
-API Documentation
+Documentation de l'API
 
-# API Documentation
+# Documentation de l'API
 
 ## Modules
 

@@ -4,16 +4,16 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / DefineStoreOptions
+[Documentation de l'API](../index.md) / [pinia](../modules/pinia.md) / DefineStoreOptions
 
 # Interface: DefineStoreOptions<Id, S, G, A\>
 
 [pinia](../modules/pinia.md).DefineStoreOptions
 
-Options parameter of `defineStore()` for option stores. Can be extended to
-augment stores with the plugin API. @see [DefineStoreOptionsBase](pinia.DefineStoreOptionsBase.md).
+Paramètre d'options de `defineStore()` pour les stores d'options. Peut être étendu pour
+stores avec l'API des plugins. @Voir [DefineStoreOptionsBase](pinia.DefineStoreOptionsBase.md).
 
-## Type parameters
+## Paramètres de type
 
 | Name | Type |
 | :------ | :------ |
@@ -22,21 +22,21 @@ augment stores with the plugin API. @see [DefineStoreOptionsBase](pinia.DefineSt
 | `G` | `G` |
 | `A` | `A` |
 
-## Hierarchy
+## Hiérarchie
 
 - [`DefineStoreOptionsBase`](pinia.DefineStoreOptionsBase.md)<`S`, [`Store`](../modules/pinia.md#store)<`Id`, `S`, `G`, `A`\>\>
 
   ↳ **`DefineStoreOptions`**
 
-## Properties
+## Propriétés
 
 ### actions
 
 • `Optional` **actions**: `A` & `ThisType`<`A` & `UnwrapRef`<`S`\> & [`_StoreWithState`](pinia._StoreWithState.md)<`Id`, `S`, `G`, `A`\> & [`_StoreWithGetters`](../modules/pinia.md#_storewithgetters)<`G`\> & [`PiniaCustomProperties`](pinia.PiniaCustomProperties.md)<`string`, [`StateTree`](../modules/pinia.md#statetree), [`_GettersTree`](../modules/pinia.md#_getterstree)<[`StateTree`](../modules/pinia.md#statetree)\>, [`_ActionsTree`](../modules/pinia.md#_actionstree)\>\>
 
-Optional object of actions.
+Objet facultatif des actions.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:652](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L652)
 
@@ -46,9 +46,9 @@ ___
 
 • `Optional` **getters**: `G` & `ThisType`<`UnwrapRef`<`S`\> & [`_StoreWithGetters`](../modules/pinia.md#_storewithgetters)<`G`\> & [`PiniaCustomProperties`](pinia.PiniaCustomProperties.md)<`string`, [`StateTree`](../modules/pinia.md#statetree), [`_GettersTree`](../modules/pinia.md#_getterstree)<[`StateTree`](../modules/pinia.md#statetree)\>, [`_ActionsTree`](../modules/pinia.md#_actionstree)\>\> & [`_GettersTree`](../modules/pinia.md#_getterstree)<`S`\>
 
-Optional object of getters.
+Objet optionnel de getters.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:645](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L645)
 
@@ -58,25 +58,25 @@ ___
 
 • **id**: `Id`
 
-Unique string key to identify the store across the application.
+Clé de chaîne unique permettant d'identifier le store dans l'application.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:634](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L634)
 
-## Methods
+## Méthodes
 
 ### hydrate
 
 ▸ `Optional` **hydrate**(`storeState`, `initialState`): `void`
 
-Allows hydrating the store during SSR when complex state (like client side only refs) are used in the store
-definition and copying the value from `pinia.state` isn't enough.
+Permet d'hydrater le store pendant le SSR lorsque des états complexes (comme des références côté client uniquement) sont utilisés dans la définition du store et que copier la valeur de `pinia.state` ne suffit pas.
+et que copier la valeur de `pinia.state` n'est pas suffisant.
 
-**`example`**
-If in your `state`, you use any `customRef`s, any `computed`s, or any `ref`s that have a different value on
-Server and Client, you need to manually hydrate them. e.g., a custom ref that is stored in the local
-storage:
+**`exemple`**
+Si dans votre `state`, vous utilisez des `customRef`s, des `computed`s, ou des `ref`s qui ont une valeur différente sur le
+serveur et le client, vous devez les hydrater manuellement. Par exemple, une référence personnalisée stockée dans le stockage local
+local :
 
 ```ts
 const useStore = defineStore('main', {
@@ -90,18 +90,18 @@ const useStore = defineStore('main', {
 })
 ```
 
-#### Parameters
+#### Paramètres
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `storeState` | `UnwrapRef`<`S`\> | the current state in the store |
+| `storeState` | `UnwrapRef`<`S`\> | l'état actuel dans le store |
 | `initialState` | `UnwrapRef`<`S`\> | initialState |
 
-#### Returns
+#### Renvoie
 
 `void`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:685](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L685)
 
@@ -111,13 +111,13 @@ ___
 
 ▸ `Optional` **state**(): `S`
 
-Function to create a fresh state. **Must be an arrow function** to ensure
-correct typings!
+Fonction permettant de créer un nouvel état. **Il doit s'agir d'une fonction flèche** pour garantir
+des typages corrects !
 
-#### Returns
+#### Renvoie
 
-`S`
+`void`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:640](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L640)

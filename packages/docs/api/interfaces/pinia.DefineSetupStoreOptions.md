@@ -4,16 +4,16 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / DefineSetupStoreOptions
+[Documentation de l'API](../index.md) / [pinia](../modules/pinia.md) / DefineSetupStoreOptions
 
 # Interface: DefineSetupStoreOptions<Id, S, G, A\>
 
 [pinia](../modules/pinia.md).DefineSetupStoreOptions
 
-Options parameter of `defineStore()` for setup stores. Can be extended to
-augment stores with the plugin API. @see [DefineStoreOptionsBase](pinia.DefineStoreOptionsBase.md).
+Paramètre d'options de `defineStore()` pour les stores de configuration. Peut être étendu pour
+stores avec l'API des plugins. @Voir [DefineStoreOptionsBase](pinia.DefineStoreOptionsBase.md).
 
-## Type parameters
+## Paramètres de type
 
 | Name | Type |
 | :------ | :------ |
@@ -22,22 +22,22 @@ augment stores with the plugin API. @see [DefineStoreOptionsBase](pinia.DefineSt
 | `G` | `G` |
 | `A` | `A` |
 
-## Hierarchy
+## Hiérarchie
 
 - [`DefineStoreOptionsBase`](pinia.DefineStoreOptionsBase.md)<`S`, [`Store`](../modules/pinia.md#store)<`Id`, `S`, `G`, `A`\>\>
 
   ↳ **`DefineSetupStoreOptions`**
 
-## Properties
+## Propriétés
 
 ### actions
 
 • `Optional` **actions**: `A`
 
-Extracted actions. Added by useStore(). SHOULD NOT be added by the user when
-creating the store. Can be used in plugins to get the list of actions in a
-store defined with a setup function. Note this is always defined
+Actions extraites. Ajoutées par useStore(). NE DOIT PAS être ajouté par l'utilisateur lors de la
+l'utilisateur lors de la création du store. Peut être utilisé dans les plugins pour obtenir la liste des actions dans un
+store défini avec une fonction d'installation. Notez que cette fonction est toujours définie
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:704](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L704)

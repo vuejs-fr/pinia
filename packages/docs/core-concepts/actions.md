@@ -5,32 +5,32 @@
   title="Learn all about actions in Pinia"
 />
 
-Actions are the equivalent of [methods](https://v3.vuejs.org/guide/data-methods.html#methods) in components. They can be defined with the `actions` property in `defineStore()` and **they are perfect to define business logic**:
+Les actions sont l'équivalent des [méthodes](https://v3.vuejs.org/guide/data-methods.html#methods) dans les composants. Elles peuvent être définies avec la propriété `actions` dans `defineStore()` et **elles sont parfaites pour définir la logique métier** :
 
 ```js
-export const useStore = defineStore('main', {
+export const useStore = defineStore("main", {
   state: () => ({
     counter: 0,
   }),
   actions: {
     increment() {
-      this.counter++
+      this.counter++;
     },
     randomizeCounter() {
-      this.counter = Math.round(100 * Math.random())
+      this.counter = Math.round(100 * Math.random());
     },
   },
-})
+});
 ```
 
-Like [getters](./getters.md), actions get access to the _whole store instance_ through `this` with **full typing (and autocompletion ✨) support**. **Unlike getters, `actions` can be asynchronous**, you can `await` inside of actions any API call or even other actions! Here is an example using [Mande](https://github.com/posva/mande). Note the library you use doesn't matter as long as you get a `Promise`, you could even use the native `fetch` function (browser only):
+Comme les [getters](./getters.md), les actions ont accès à l'instance du store entier à travers `this` avec **un support complet de la typographie (et de l'autocomplétion ✨)**. **Contrairement à eux, les `actions` peuvent être asynchrones**, vous pouvez `attendre` à l'intérieur d'elles tout appel d'API ou même d'autres actions ! Voici un exemple utilisant [Mande](https://github.com/posva/mande). Notez que la bibliothèque que vous utilisez n'a pas d'importance tant que vous obtenez un `Promise`, vous pouvez même utiliser la fonction native `fetch` (navigateur uniquement) :
 
 ```js
-import { mande } from 'mande'
+import { mande } from "mande";
 
-const api = mande('/api/users')
+const api = mande("/api/users");
 
-export const useUsers = defineStore('users', {
+export const useUsers = defineStore("users", {
   state: () => ({
     userData: null,
     // ...
@@ -39,84 +39,83 @@ export const useUsers = defineStore('users', {
   actions: {
     async registerUser(login, password) {
       try {
-        this.userData = await api.post({ login, password })
-        showTooltip(`Welcome back ${this.userData.name}!`)
+        this.userData = await api.post({ login, password });
+        showTooltip(`Welcome back ${this.userData.name}!`);
       } catch (error) {
-        showTooltip(error)
-        // let the form component display the error
-        return error
+        showTooltip(error);
+        // laisser le composant du formulaire afficher l'erreur
+        return error;
       }
     },
   },
-})
+});
 ```
 
-You are also completely free to set whatever arguments you want and return anything. When calling actions, everything will be automatically inferred!
+Vous êtes également totalement libre de définir les arguments que vous voulez et de retourner n'importe quoi. Lorsque vous appelez des actions, tout sera automatiquement déduit !
 
-Actions are invoked like methods:
+Les actions sont invoquées comme des méthodes :
 
 ```js
 export default defineComponent({
   setup() {
-    const main = useMainStore()
-    // call the action as a method of the store
-    main.randomizeCounter()
+    const main = useMainStore();
+    // appeler l'action comme une méthode du store
+    main.randomizeCounter();
 
-    return {}
+    return {};
   },
-})
+});
 ```
 
-## Accessing other stores actions
+## Accès aux actions d'autres stores
 
-To use another store, you can directly _use it_ inside of the _action_:
+Pour utiliser un autre store, vous pouvez directement l'_utiliser_ à l'intérieur de l'_action_ :
 
 ```js
-import { useAuthStore } from './auth-store'
+import { useAuthStore } from "./auth-store";
 
-export const useSettingsStore = defineStore('settings', {
+export const useSettingsStore = defineStore("settings", {
   state: () => ({
-    preferences: null,
     // ...
   }),
   actions: {
-    async fetchUserPreferences() {
-      const auth = useAuthStore()
+    async fetchUserPreferences(preferences) {
+      const auth = useAuthStore();
       if (auth.isAuthenticated) {
-        this.preferences = await fetchPreferences()
+        this.preferences = await fetchPreferences();
       } else {
-        throw new Error('User must be authenticated')
+        throw new Error("User must be authenticated");
       }
     },
   },
-})
+});
 ```
 
-## Usage with `setup()`
+## Usage avec `setup()`
 
-You can directly call any action as a method of the store:
+Vous pouvez appeler directement n'importe quelle action comme une méthode du store :
 
 ```js
 export default {
   setup() {
-    const store = useStore()
+    const store = useStore();
 
-    store.randomizeCounter()
+    store.randomizeCounter();
   },
-}
+};
 ```
 
-## Usage with the Options API
+## Utilisation avec l'API Options
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/access-pinia-actions-in-the-options-api"
   title="Access Pinia Getters via the Options API"
 />
 
-For the following examples, you can assume the following store was created:
+Pour les exemples suivants, vous pouvez supposer que le store suivant a été créé :
 
 ```js
-// Example File Path:
+// Exemple de chemin de fichier:
 // ./src/stores/counterStore.js
 
 import { defineStore } from 'pinia',
@@ -133,31 +132,31 @@ const useCounterStore = defineStore('counterStore', {
 })
 ```
 
-### With `setup()`
+### Avec `setup()`
 
-While Composition API is not for everyone, the `setup()` hook can make using Pinia easier to work with in the Options API. No extra map helper functions needed!
+Bien que l'API de composition ne soit pas pour tout le monde, le hook `setup()` peut rendre l'utilisation de Pinia plus facile dans l'API d'options. Aucune fonction supplémentaire d'aide à la carte n'est nécessaire !
 
 ```js
-import { useCounterStore } from '../stores/counterStore'
+import { useCounterStore } from "../stores/counterStore";
 
 export default {
   setup() {
-    const counterStore = useCounterStore()
+    const counterStore = useCounterStore();
 
-    return { counterStore }
+    return { counterStore };
   },
   methods: {
     incrementAndPrint() {
-      this.counterStore.increment()
-      console.log('New Count:', this.counterStore.count)
+      this.counterStore.increment();
+      console.log("New Count:", this.counterStore.count);
     },
   },
-}
+};
 ```
 
-### Without `setup()`
+### Sans `setup()`
 
-If you would prefer not to use Composition API at all, you can use the `mapActions()` helper to map actions properties as methods in your component:
+Si vous préférez ne pas utiliser l'API de composition, vous pouvez utiliser l'aide `mapActions()` pour transformer les propriétés des actions en méthodes dans votre composant :
 
 ```js
 import { mapActions } from 'pinia'
@@ -165,69 +164,69 @@ import { useCounterStore } from '../stores/counterStore'
 
 export default {
   methods: {
-    // gives access to this.increment() inside the component
-    // same as calling from store.increment()
+    // donne accès à this.increment() à l'intérieur du composant
+    // identique à l'appel depuis store.increment()
     ...mapActions(useCounterStore, ['increment'])
-    // same as above but registers it as this.myOwnName()
+    // même chose que ci-dessus mais l'enregistre comme this.myOwnName()
     ...mapActions(useCounterStore, { myOwnName: 'doubleCounter' }),
   },
 }
 ```
 
-## Subscribing to actions
+## S'abonner à des actions
 
-It is possible to observe actions and their outcome with `store.$onAction()`. The callback passed to it is executed before the action itself. `after` handle promises and allows you to execute a function after the action resolves. In a similar way, `onError` allows you execute a function if the action throws or rejects. These are useful for tracking errors at runtime, similar to [this tip in the Vue docs](https://v3.vuejs.org/guide/tooling/deployment.html#tracking-runtime-errors).
+Il est possible d'observer les actions et leur résultat avec `store.$onAction()`. Le callback qui lui est passé est exécuté avant l'action elle-même. `after` gère les promesses et vous permet d'exécuter une fonction après la résolution de l'action. De la même manière, `onError` vous permet d'exécuter une fonction si l'action est lancée ou rejetée. Ces fonctions sont utiles pour suivre les erreurs au moment de l'exécution, comme [cette astuce dans la documentation de Vue](https://v3.vuejs.org/guide/tooling/deployment.html#tracking-runtime-errors).
 
-Here is an example that logs before running actions and after they resolve/reject.
+Voici un exemple qui enregistre avant l'exécution des actions et après leur résolution/rejet.
 
 ```js
 const unsubscribe = someStore.$onAction(
   ({
-    name, // name of the action
-    store, // store instance, same as `someStore`
-    args, // array of parameters passed to the action
-    after, // hook after the action returns or resolves
-    onError, // hook if the action throws or rejects
+    name, // nom de l'action
+    store, // instance de store, identique à `someStore'.
+    args, // tableau de paramètres passés à l'action
+    after, // hook après le retour ou la résolution de l'action
+    onError, // crochet si l'action est rejetée ou rejetée.
   }) => {
-    // a shared variable for this specific action call
-    const startTime = Date.now()
-    // this will trigger before an action on `store` is executed
-    console.log(`Start "${name}" with params [${args.join(', ')}].`)
+    // une variable partagée pour cet appel d'action spécifique
+    const startTime = Date.now();
+    // ceci se déclenchera avant qu'une action sur `store` soit exécutée.
+    console.log(`Start "${name}" with params [${args.join(", ")}].`);
 
-    // this will trigger if the action succeeds and after it has fully run.
-    // it waits for any returned promised
+    // cela se déclenchera si l'action réussit et après son exécution complète.
+    // il attend tout retour promis
     after((result) => {
       console.log(
         `Finished "${name}" after ${
           Date.now() - startTime
         }ms.\nResult: ${result}.`
-      )
-    })
+      );
+    });
 
-    // this will trigger if the action throws or returns a promise that rejects
+    // ceci se déclenchera si l'action jette ou renvoie une promesse qui rejette.
     onError((error) => {
       console.warn(
         `Failed "${name}" after ${Date.now() - startTime}ms.\nError: ${error}.`
-      )
-    })
+      );
+    });
   }
-)
+);
 
-// manually remove the listener
-unsubscribe()
+// supprimer manuellement l'écouteur
+unsubscribe();
 ```
 
-By default, _action subscriptions_ are bound to the component where they are added (if the store is inside a component's `setup()`). Meaning, they will be automatically removed when the component is unmounted. If you want to keep them after the component is unmounted, pass `true` as the second argument to _detach_ the _action subscription_ from the current component:
+Par défaut, les _souscriptions d'actions_ sont liées au composant où elles sont ajoutées (si le store est dans le `setup()` d'un composant). Cela signifie qu'ils seront automatiquement supprimés lorsque le composant sera démonté. Si vous voulez les conserver après le démontage du composant, passez `true` comme deuxième argument pour _détacher_ l'abonnement à l'action du composant actuel :
 
 ```js
 export default {
   setup() {
-    const someStore = useSomeStore()
+    const someStore = useSomeStore();
 
-    // this subscription will be kept after the component is unmounted
-    someStore.$onAction(callback, true)
+    // cet abonnement sera conservé après le démontage du composant.
+    someStore.$onAction(callback, true);
 
     // ...
   },
-}
+};
 ```

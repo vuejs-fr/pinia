@@ -4,13 +4,13 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / PiniaCustomProperties
+[Documentation de l'API](../index.md) / [pinia](../modules/pinia.md) / PiniaCustomPropriétés
 
-# Interface: PiniaCustomProperties<Id, S, G, A\>
+# Interface: PiniaCustomPropriétés<Id, S, G, A\>
 
-[pinia](../modules/pinia.md).PiniaCustomProperties
+[pinia](../modules/pinia.md).PiniaCustomPropriétés
 
-Interface to be extended by the user when they add properties through plugins.
+Interface to be extended by the user when they add Propriétés through plugins.
 
 ## Type parameters
 
@@ -21,15 +21,15 @@ Interface to be extended by the user when they add properties through plugins.
 | `G` | [`_GettersTree`](../modules/pinia.md#_getterstree)<`S`\> |
 | `A` | [`_ActionsTree`](../modules/pinia.md#_actionstree) |
 
-## Properties
+## Propriétés
 
 ### $nuxt
 
 • **$nuxt**: `Context`
 
-Nuxt context.
+Le context de Nuxt
 
-#### Defined in
+#### Défini dans
 
 [packages/nuxt/src/module.ts:68](https://github.com/vuejs/pinia/blob/2b998ee/packages/nuxt/src/module.ts#L68)
 
@@ -39,7 +39,7 @@ ___
 
 • **double**: `number`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/__tests__/storePlugins.spec.ts:14](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/__tests__/storePlugins.spec.ts#L14)
 
@@ -49,7 +49,7 @@ ___
 
 • **globalA**: `string`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/__tests__/storePlugins.spec.ts:11](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/__tests__/storePlugins.spec.ts#L11)
 
@@ -59,7 +59,7 @@ ___
 
 • **globalB**: `string`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/__tests__/storePlugins.spec.ts:12](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/__tests__/storePlugins.spec.ts#L12)
 
@@ -69,7 +69,7 @@ ___
 
 • **hasApp**: `boolean`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/__tests__/storePlugins.spec.ts:9](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/__tests__/storePlugins.spec.ts#L9)
 
@@ -79,7 +79,7 @@ ___
 
 • **idFromPlugin**: `Id`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/__tests__/storePlugins.spec.ts:10](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/__tests__/storePlugins.spec.ts#L10)
 
@@ -89,7 +89,7 @@ ___
 
 • **pluginN**: `number`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/__tests__/storePlugins.spec.ts:7](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/__tests__/storePlugins.spec.ts#L7)
 
@@ -99,7 +99,7 @@ ___
 
 • **shared**: `number`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/__tests__/storePlugins.spec.ts:13](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/__tests__/storePlugins.spec.ts#L13)
 
@@ -109,11 +109,11 @@ ___
 
 • **uid**: `number`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/__tests__/storePlugins.spec.ts:8](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/__tests__/storePlugins.spec.ts#L8)
 
-## Accessors
+## Accesseurs
 
 ### route
 
@@ -123,22 +123,22 @@ ___
 
 `RouteLocationNormalized`
 
-#### Defined in
+#### Défini dans
 
 [packages/playground/src/main.ts:17](https://github.com/vuejs/pinia/blob/2b998ee/packages/playground/src/main.ts#L17)
 
 • `set` **route**(`value`): `void`
 
-#### Parameters
+#### Paramètres
 
 | Name | Type |
 | :------ | :------ |
 | `value` | `RouteLocationNormalizedLoaded` \| `Ref`<`RouteLocationNormalizedLoaded`\> |
 
-#### Returns
+#### Renvoie
 
 `void`
 
-#### Defined in
+#### Défini dans
 
 [packages/playground/src/main.ts:14](https://github.com/vuejs/pinia/blob/2b998ee/packages/playground/src/main.ts#L14)

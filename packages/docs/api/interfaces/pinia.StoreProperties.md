@@ -4,35 +4,35 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / StoreProperties
+[Documentation de l'API](../index.md) / [pinia](../modules/pinia.md) / StoreProperties
 
 # Interface: StoreProperties<Id\>
 
 [pinia](../modules/pinia.md).StoreProperties
 
-Properties of a store.
+Propriétés d'un store.
 
-## Type parameters
+## Paramètres de type
 
 | Name | Type |
 | :------ | :------ |
 | `Id` | extends `string` |
 
-## Hierarchy
+## Hiérarchie
 
 - **`StoreProperties`**
 
   ↳ [`_StoreWithState`](pinia._StoreWithState.md)
 
-## Properties
+## Propriétés
 
 ### $id
 
 • **$id**: `Id`
 
-Unique identifier of the store
+Identifiant unique du store
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:265](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L265)
 
@@ -42,10 +42,10 @@ ___
 
 • **\_customProperties**: `Set`<`string`\>
 
-Used by devtools plugin to retrieve properties added with plugins. Removed
-in production. Can be used by the user to add property keys of the store
-that should be displayed in devtools.
+Utilisé par le plugin devtools pour récupérer les propriétés ajoutées avec les plugins. Supprimé
+en production. Peut être utilisé par l'utilisateur pour ajouter des clés de propriétés du store
+qui doivent être affichées dans devtools.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:293](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L293)

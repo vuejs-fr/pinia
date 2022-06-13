@@ -4,15 +4,15 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / PiniaPluginContext
+[Documentation de l'API](../index.md) / [pinia](../modules/pinia.md) / PiniaPluginContext
 
 # Interface: PiniaPluginContext<Id, S, G, A\>
 
 [pinia](../modules/pinia.md).PiniaPluginContext
 
-Context argument passed to Pinia plugins.
+Argument contextuel passé aux plugins Pinia.
 
-## Type parameters
+## Paramètres de type
 
 | Name | Type |
 | :------ | :------ |
@@ -21,15 +21,15 @@ Context argument passed to Pinia plugins.
 | `G` | [`_GettersTree`](../modules/pinia.md#_getterstree)<`S`\> |
 | `A` | [`_ActionsTree`](../modules/pinia.md#_actionstree) |
 
-## Properties
+## Propriété
 
 ### app
 
 • **app**: `App`<`any`\>
 
-Current app created with `Vue.createApp()`.
+Application actuelle créée avec `Vue.createApp()`.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/rootStore.ts:117](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/rootStore.ts#L117)
 
@@ -39,9 +39,9 @@ ___
 
 • **options**: [`DefineStoreOptionsInPlugin`](pinia.DefineStoreOptionsInPlugin.md)<`Id`, `S`, `G`, `A`\>
 
-Options object defining the store passed to `defineStore()`.
+Objet d'options définissant le magasin passé à `defineStore()`.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/rootStore.ts:127](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/rootStore.ts#L127)
 
@@ -53,7 +53,7 @@ ___
 
 pinia instance.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/rootStore.ts:112](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/rootStore.ts#L112)
 
@@ -63,8 +63,8 @@ ___
 
 • **store**: [`Store`](../modules/pinia.md#store)<`Id`, `S`, `G`, `A`\>
 
-Current store being extended.
+Le store actuel est en cours d'extension.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/rootStore.ts:122](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/rootStore.ts#L122)

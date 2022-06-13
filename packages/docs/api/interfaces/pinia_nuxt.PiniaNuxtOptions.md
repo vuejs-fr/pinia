@@ -4,23 +4,23 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [@pinia/nuxt](../modules/pinia_nuxt.md) / PiniaNuxtOptions
+[Documentation de l'API](../index.md) / [@pinia/nuxt](../modules/pinia_nuxt.md) / PiniaNuxtOptions
 
 # Interface: PiniaNuxtOptions
 
 [@pinia/nuxt](../modules/pinia_nuxt.md).PiniaNuxtOptions
 
-## Properties
+## Propriétés
 
 ### disableVuex
 
 • `Optional` **disableVuex**: `boolean`
 
-Pinia disables Vuex by default, set this option to `false` to avoid it and
-use Pinia alongside Vuex.
+Pinia désactive Vuex par défaut, mettez cette option à `false` pour éviter cela et
+utiliser Pinia avec Vuex.
 
 **`default`** `true`
 
-#### Defined in
+#### Défini dans
 
 [packages/nuxt/src/module.ts:15](https://github.com/vuejs/pinia/blob/2b998ee/packages/nuxt/src/module.ts#L15)

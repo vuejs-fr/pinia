@@ -4,29 +4,29 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / MutationType
+[Documentation API](../index.md) / [pinia](../modules/pinia.md) / MutationType
 
-# Enumeration: MutationType
+# Énumération : MutationType
 
 [pinia](../modules/pinia.md).MutationType
 
-Possible types for SubscriptionCallback
+Types possibles pour SubscriptionCallback
 
-## Enumeration members
+## Membres de l'énumération
 
 ### direct
 
 • **direct** = `"direct"`
 
-Direct mutation of the state:
+Mutation directe de l'état :
 
 - `store.name = 'new name'`
 - `store.$state.name = 'new name'`
 - `store.list.push('new item')`
 
-#### Defined in
+#### Défini dans
 
-[packages/pinia/src/types.ts:50](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L50)
+[pinia/src/types.ts:50](https://github.com/posva/pinia/blob/46c50b2/packages/pinia/src/types.ts#L50)
 
 ___
 
@@ -34,13 +34,13 @@ ___
 
 • **patchFunction** = `"patch function"`
 
-Mutated the state with `$patch` and a function
+Muté l'état avec `$patch` et une fonction
 
 - `store.$patch(state => state.name = 'newName')`
 
-#### Defined in
+#### Défini dans
 
-[packages/pinia/src/types.ts:64](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L64)
+[pinia/src/types.ts:64](https://github.com/posva/pinia/blob/46c50b2/packages/pinia/src/types.ts#L64)
 
 ___
 
@@ -48,10 +48,10 @@ ___
 
 • **patchObject** = `"patch object"`
 
-Mutated the state with `$patch` and an object
+Muté l'état avec `$patch` et un objet
 
 - `store.$patch({ name: 'newName' })`
 
-#### Defined in
+#### Défini dans
 
-[packages/pinia/src/types.ts:57](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L57)
+[pinia/src/types.ts:57](https://github.com/posva/pinia/blob/46c50b2/packages/pinia/src/types.ts#L57)

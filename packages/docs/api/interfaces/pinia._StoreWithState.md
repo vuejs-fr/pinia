@@ -4,15 +4,15 @@ editLinks: false
 sidebarDepth: 3
 ---
 
-[API Documentation](../index.md) / [pinia](../modules/pinia.md) / \_StoreWithState
+[Documentation de l'API](../index.md) / [pinia](../modules/pinia.md) / \_StoreWithState
 
 # Interface: \_StoreWithState<Id, S, G, A\>
 
 [pinia](../modules/pinia.md)._StoreWithState
 
-Base store with state and functions. Should not be used directly.
+store de base avec état et fonctions. Ne doit pas être utilisé directement.
 
-## Type parameters
+## Paramètres de type
 
 | Name | Type |
 | :------ | :------ |
@@ -21,25 +21,25 @@ Base store with state and functions. Should not be used directly.
 | `G` | `G` |
 | `A` | `A` |
 
-## Hierarchy
+## Hiérarchie
 
 - [`StoreProperties`](pinia.StoreProperties.md)<`Id`\>
 
   ↳ **`_StoreWithState`**
 
-## Properties
+## Propriétés
 
 ### $id
 
 • **$id**: `Id`
 
-Unique identifier of the store
+Identifiant unique du store
 
-#### Inherited from
+#### Héritée de
 
 [StoreProperties](pinia.StoreProperties.md).[$id](pinia.StoreProperties.md#$id)
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:265](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L265)
 
@@ -49,9 +49,9 @@ ___
 
 • **$state**: `UnwrapRef`<`S`\> & `PiniaCustomStateProperties`<`S`\>
 
-State of the Store. Setting it will replace the whole state.
+État du store. Si vous le définissez, vous remplacerez l'ensemble de l'état.
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:335](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L335)
 
@@ -61,33 +61,33 @@ ___
 
 • **\_customProperties**: `Set`<`string`\>
 
-Used by devtools plugin to retrieve properties added with plugins. Removed
-in production. Can be used by the user to add property keys of the store
-that should be displayed in devtools.
+Utilisé par le plugin devtools pour récupérer les propriétés ajoutées avec les plugins. Supprimé
+en production. Peut être utilisé par l'utilisateur pour ajouter des clés de propriétés du store
+qui doivent être affichées dans devtools.
 
-#### Inherited from
+#### Héritée de
 
 [StoreProperties](pinia.StoreProperties.md).[_customProperties](pinia.StoreProperties.md#_customproperties)
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:293](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L293)
 
-## Methods
+## Méthodes
 
 ### $dispose
 
 ▸ **$dispose**(): `void`
 
-Stops the associated effect scope of the store and remove it from the store
-registry. Plugins can override this method to cleanup any added effects.
-e.g. devtools plugin stops displaying disposed stores from devtools.
+Arrête la portée de l'effet associé du store et la supprime du registre du store.
+registre. Les plugins peuvent surcharger cette méthode pour nettoyer tout effet ajouté.
+Par exemple, le plugin devtools arrête l'affichage des stores disposés de devtools.
 
-#### Returns
+#### Retourne
 
 `void`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:423](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L423)
 
@@ -97,90 +97,90 @@ ___
 
 ▸ **$onAction**(`callback`, `detached?`): () => `void`
 
-Setups a callback to be called every time an action is about to get
-invoked. The callback receives an object with all the relevant information
-of the invoked action:
-- `store`: the store it is invoked on
-- `name`: The name of the action
-- `args`: The parameters passed to the action
+Configure un callback qui sera appelé chaque fois qu'une action est sur le point d'être
+invoquée. Le callback reçoit un objet avec toutes les informations pertinentes
+de l'action invoquée :
+- `store` : le store sur lequel elle est invoquée
+- `name` : Le nom de l'action
+- `args` : Les paramètres passés à l'action
 
-On top of these, it receives two functions that allow setting up a callback
-once the action finishes or when it fails.
+En plus de cela, il reçoit deux fonctions qui permettent de configurer un callback
+lorsque l'action se termine ou lorsqu'elle échoue.
 
-It also returns a function to remove the callback. Note than when calling
-`store.$onAction()` inside of a component, it will be automatically cleaned
-up when the component gets unmounted unless `detached` is set to true.
+Elle renvoie également une fonction permettant de supprimer le callback. Notez que lorsque vous appelez
+`store.$onAction()` à l'intérieur d'un composant, elle sera automatiquement nettoyée
+automatiquement nettoyé lorsque le composant sera démonté, à moins que `detached` ne soit défini à true.
 
 **`example`**
 
 ```js
 store.$onAction(({ after, onError }) => {
- // Here you could share variables between all of the hooks as well as
- // setting up watchers and clean them up
+ // Ici vous pouvez partager des variables entre tous les hooks ainsi que
+ // mettre en place des watchers et les nettoyer
  after((resolvedValue) => {
-   // can be used to cleanup side effects
-.  // `resolvedValue` is the value returned by the action, if it's a
-.  // Promise, it will be the resolved value instead of the Promise
+   // peut être utilisé pour nettoyer les effets secondaires
+.  // `resolvedValue` est la valeur retournée par l'action, si c'est un
+.  // Promise, ce sera la valeur résolue au lieu de la Promise.
  })
  onError((error) => {
-   // can be used to pass up errors
+   // peut être utilisé pour transmettre les erreurs
  })
 })
 ```
 
-#### Parameters
+#### Paramètres
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `callback` | [`StoreOnActionListener`](../modules/pinia.md#storeonactionlistener)<`Id`, `S`, `G`, `A`\> | callback called before every action |
-| `detached?` | `boolean` | detach the subscription from the context this is called from |
+| `callback` | [`StoreOnActionListener`](../modules/pinia.md#storeonactionlistener)<`Id`, `S`, `G`, `A`\> | callback appelé avant chaque action |
+| `detached?` | `boolean` | détache l'abonnement du contexte à partir duquel il est appelé |
 
-#### Returns
+#### Renvoie
 
 `fn`
 
-function that removes the watcher
+fonction qui supprime l'observateur
 
 ▸ (): `void`
 
-Setups a callback to be called every time an action is about to get
-invoked. The callback receives an object with all the relevant information
-of the invoked action:
-- `store`: the store it is invoked on
-- `name`: The name of the action
-- `args`: The parameters passed to the action
+Configure un callback qui sera appelé chaque fois qu'une action est sur le point d'être
+invoquée. Le callback reçoit un objet avec toutes les informations pertinentes
+de l'action invoquée :
+- `store` : le store sur lequel elle est invoquée
+- `name` : Le nom de l'action
+- `args` : Les paramètres passés à l'action
 
-On top of these, it receives two functions that allow setting up a callback
-once the action finishes or when it fails.
+En plus de cela, il reçoit deux fonctions qui permettent de configurer un callback
+lorsque l'action se termine ou lorsqu'elle échoue.
 
-It also returns a function to remove the callback. Note than when calling
-`store.$onAction()` inside of a component, it will be automatically cleaned
-up when the component gets unmounted unless `detached` is set to true.
+Elle renvoie également une fonction permettant de supprimer le callback. Notez que lorsque vous appelez
+`store.$onAction()` à l'intérieur d'un composant, elle sera automatiquement nettoyée
+automatiquement nettoyé lorsque le composant sera démonté, à moins que `detached` ne soit défini à true.
 
 **`example`**
 
 ```js
 store.$onAction(({ after, onError }) => {
- // Here you could share variables between all of the hooks as well as
- // setting up watchers and clean them up
+ // Ici vous pouvez partager des variables entre tous les hooks ainsi que
+ // mettre en place des watchers et les nettoyer
  after((resolvedValue) => {
-   // can be used to cleanup side effects
-.  // `resolvedValue` is the value returned by the action, if it's a
-.  // Promise, it will be the resolved value instead of the Promise
+   // peut être utilisé pour nettoyer les effets secondaires
+.  // `resolvedValue` est la valeur retournée par l'action, si c'est un
+.  // Promise, ce sera la valeur résolue au lieu de la Promise.
  })
  onError((error) => {
-   // can be used to pass up errors
+   // peut être utilisé pour transmettre les erreurs
  })
 })
 ```
 
-##### Returns
+##### Renvoie
 
 `void`
 
-function that removes the watcher
+fonction qui supprime l'observateur
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:413](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L413)
 
@@ -190,45 +190,46 @@ ___
 
 ▸ **$patch**(`partialState`): `void`
 
-Applies a state patch to current state. Allows passing nested values
+Applique un patch d'état à l'état actuel. Permet de passer des valeurs imbriquées
 
-#### Parameters
+#### Paramètres
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `partialState` | [`_DeepPartial`](../modules/pinia.md#_deeppartial)<`UnwrapRef`<`S`\>\> | patch to apply to the state |
+| `partialState` | [`_DeepPartial`](../modules/pinia.md#_deeppartial)<`UnwrapRef`<`S`\>\> | patch à appliquer à l'état |
 
-#### Returns
+##### Renvoie
 
 `void`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:342](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L342)
 
 ▸ **$patch**<`F`\>(`stateMutator`): `void`
 
-Group multiple changes into one function. Useful when mutating objects like
-Sets or arrays and applying an object patch isn't practical, e.g. appending
-to an array. The function passed to `$patch()` **must be synchronous**.
+Regroupe plusieurs modifications dans une seule fonction. Utile lorsque la mutation d'objets tels que
+des ensembles ou des tableaux et que l'application d'un patch d'objet n'est pas pratique, par exemple l'ajout de
+à un tableau. La fonction passée à `$patch()` **doit être synchrone**.
 
-#### Type parameters
+#### Paramètres de type
 
 | Name | Type |
 | :------ | :------ |
 | `F` | extends (`state`: `UnwrapRef`<`S`\>) => `any` |
 
-#### Parameters
+#### Paramètres
+
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `stateMutator` | `ReturnType`<`F`\> extends `Promise`<`any`\> ? `never` : `F` | function that mutates `state`, cannot be async |
+| `stateMutator` | `ReturnType`<`F`\> extends `Promise`<`any`\> ? `never` : `F` | fonction qui modifie l’`état`, ne peut pas être asynchrone. |
 
-#### Returns
+##### Renvoie
 
 `void`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:351](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L351)
 
@@ -238,14 +239,14 @@ ___
 
 ▸ **$reset**(): `void`
 
-Resets the store to its initial state by building a new state object.
-TODO: make this options only
+Réinitialise le store à son état initial en construisant un nouvel objet d'état.
+TODO : faire cette option seulement
 
-#### Returns
+##### Renvoie
 
 `void`
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:360](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L360)
 
@@ -255,35 +256,35 @@ ___
 
 ▸ **$subscribe**(`callback`, `options?`): () => `void`
 
-Setups a callback to be called whenever the state changes. It also returns a function to remove the callback. Note
-than when calling `store.$subscribe()` inside of a component, it will be automatically cleaned up when the
-component gets unmounted unless `detached` is set to true.
+Configure un callback qui sera appelé à chaque fois que l'état change. Elle renvoie également une fonction permettant de supprimer la fonction de rappel. Remarque :
+que lorsque vous appelez `store.$subscribe()` à l'intérieur d'un composant, il sera automatiquement nettoyé lorsque le
+composant est démonté, à moins que `detached` ne soit défini à true.
 
-#### Parameters
+#### Paramètres
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `callback` | [`SubscriptionCallback`](../modules/pinia.md#subscriptioncallback)<`S`\> | callback passed to the watcher |
-| `options?` | { `detached?`: `boolean`  } & `WatchOptions`<`boolean`\> | `watch` options + `detached` to detach the subscription from the context (usually a component) this is called from. Note that the `flush` option does not affect calls to `store.$patch()`. |
+| `callback` | [`SubscriptionCallback`](../modules/pinia.md#subscriptioncallback)<`S`\> | callback passé au watcher |
+| `options?` | { `detached?`: `boolean`  } & `WatchOptions`<`boolean`\> | Options `watch` + `detached` pour détacher l'abonnement du contexte (généralement un composant) à partir duquel il est appelé. Notez que l'option `flush` n'affecte pas les appels à `store.$patch()`. |
 
-#### Returns
+#### Renvoie
 
 `fn`
 
-function that removes the watcher
+fonction qui supprime l'observateur
 
 ▸ (): `void`
 
-Setups a callback to be called whenever the state changes. It also returns a function to remove the callback. Note
-than when calling `store.$subscribe()` inside of a component, it will be automatically cleaned up when the
-component gets unmounted unless `detached` is set to true.
+Configure un callback qui sera appelé à chaque fois que l'état change. Elle renvoie également une fonction permettant de supprimer la fonction de rappel. Remarque :
+que lorsque vous appelez `store.$subscribe()` à l'intérieur d'un composant, il sera automatiquement nettoyé lorsque le
+composant est démonté, à moins que `detached` ne soit défini à true.
 
-##### Returns
+##### Renvoie
 
 `void`
 
-function that removes the watcher
+fonction qui supprime l'observateur
 
-#### Defined in
+#### Défini dans
 
 [packages/pinia/src/types.ts:372](https://github.com/vuejs/pinia/blob/2b998ee/packages/pinia/src/types.ts#L372)

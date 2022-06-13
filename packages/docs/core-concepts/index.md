@@ -1,75 +1,75 @@
-# Defining a Store
+# Définir un Store
 
 <VueSchoolLink
   href="https://vueschool.io/lessons/define-your-first-pinia-store"
   title="Learn how to define and use stores in Pinia"
 />
 
-Before diving into core concepts, we need to know that a store is defined using `defineStore()` and that it requires a **unique** name, passed as the first argument:
+Avant de plonger dans les concepts de base, nous devons savoir qu'un store est défini à l'aide de `defineStore()` et qu'il nécessite un nom **unique**, passé comme premier argument :
 
 ```js
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-// useStore could be anything like useUser, useCart
-// the first argument is a unique id of the store across your application
-export const useStore = defineStore('main', {
-  // other options...
-})
+// useStore peut être n'importe quoi comme useUser, useCart
+// le premier argument est un identifiant unique du store dans votre application.
+export const useStore = defineStore("main", {
+  // d'autres options...
+});
 ```
 
-This _name_, also referred as _id_, is necessary and is used by Pinia to connect the store to the devtools. Naming the returned function _use..._ is a convention across composables to make its usage idiomatic.
+Ce _nom_, également appelé _id_, est nécessaire et est utilisé par Pinia pour connecter le store aux devtools. Nommer la fonction retournée _use..._ est une convention entre composables pour rendre son utilisation idiomatique.
 
-## Using the store
+## Utilisation du store
 
-We are _defining_ a store because the store won't be created until `useStore()` is called inside of `setup()`:
+Nous _définissons_ un store parce que le store ne sera pas créé avant que `useStore()` soit appelé à l'intérieur de `setup()` :
 
 ```js
-import { useStore } from '@/stores/counter'
+import { useStore } from "@/stores/counter";
 
 export default {
   setup() {
-    const store = useStore()
+    const store = useStore();
 
     return {
-      // you can return the whole store instance to use it in the template
+      // vous pouvez renvoyer l'instance de store complète pour l'utiliser dans le modèle.
       store,
-    }
+    };
   },
-}
+};
 ```
 
-You can define as many stores as you want and **you should define each store in a different file** to get the most out of pinia (like automatically allow your bundle to code split and TypeScript inference).
+Vous pouvez définir autant de stores que vous le souhaitez et **vous devriez définir chaque store dans un fichier différent** pour tirer le meilleur parti de pinia (comme permettre automatiquement à votre bundle de faire du code split et de l'inférence TypeScript).
 
-If you are not using `setup` components yet, [you can still use Pinia with _map helpers_](../cookbook/options-api.md).
+Si vous n'utilisez pas encore les composants `setup`, [vous pouvez toujours utiliser Pinia avec les _map helpers_](../cookbook/options-api.md).
 
-Once the store is instantiated, you can access any property defined in `state`, `getters`, and `actions` directly on the store. We will see these in detail in the next pages but autocompletion will help you.
+Une fois que le store est instancié, vous pouvez accéder à n'importe quelle propriété définie dans `state`, `getters`, et `actions` directement sur le store. Nous les verrons en détail dans les pages suivantes, mais l'autocomplétion vous aidera.
 
-Note that `store` is an object wrapped with `reactive`, meaning there is no need to write `.value` after getters but, like `props` in `setup`, **we cannot destructure it**:
+Notez que `store` est un objet enveloppé avec `reactive`, ce qui signifie qu'il n'y a pas besoin d'écrire `.value` après les getters mais, comme `props` dans `setup`, **on ne peut pas le déstructurer** :
 
 ```js
 export default defineComponent({
   setup() {
-    const store = useStore()
-    // ❌ This won't work because it breaks reactivity
-    // it's the same as destructuring from `props`
-    const { name, doubleCount } = store
+    const store = useStore();
+    // ❌ Ça ne marchera pas car ça casse la réactivité.
+    // c'est la même chose que de déstructurer à partir de `props`.
+    const { name, doubleCount } = store;
 
-    name // "eduardo"
-    doubleCount // 2
+    name; // "eduardo"
+    doubleCount; // 2
 
     return {
-      // will always be "eduardo"
+      // sera toujours "eduardo"
       name,
-      // will always be 2
+      // sera toujours égal à 2
       doubleCount,
-      // this one will be reactive
+      // celui-ci sera réactif
       doubleValue: computed(() => store.doubleCount),
-    }
+    };
   },
-})
+});
 ```
 
-In order to extract properties from the store while keeping its reactivity, you need to use `storeToRefs()`. It will create refs for every reactive property. This is useful when you are only using state from the store but not calling any action. Note you can destructure actions directly from the store as they are bound to the store itself too:
+Afin d'extraire les propriétés du store tout en conservant sa réactivité, vous devez utiliser `storeToRefs()`. Elle créera des références pour chaque propriété réactive. Ceci est utile lorsque vous n'utilisez que l'état du store sans appeler d'action. Notez que vous pouvez déstructurer les actions directement depuis le store car elles sont liées au store lui-même :
 
 ```js
 import { storeToRefs } from 'pinia'
@@ -77,16 +77,16 @@ import { storeToRefs } from 'pinia'
 export default defineComponent({
   setup() {
     const store = useStore()
-    // `name` and `doubleCount` are reactive refs
-    // This will also create refs for properties added by plugins
-    // but skip any action or non reactive (non ref/reactive) property
+    // `name` et `doubleCount` sont des références réactives.
+    // Ceci créera également des références pour les propriétés ajoutées par les plugins.
+    // mais ignore toute action ou propriété non réactive (non ref/réactive).
     const { name, doubleCount } = storeToRefs(store)
-    // the increment action can be just extracted
+    // l'action d'incrémentation peut être juste extraite
     const { increment } = store
 
     return {
       name,
-      doubleCount,
+      doubleCount
       increment,
     }
   },

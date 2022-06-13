@@ -13,31 +13,31 @@ sidebarDepth: 3
 - [TestingOptions](../interfaces/pinia_testing.TestingOptions.md)
 - [TestingPinia](../interfaces/pinia_testing.TestingPinia.md)
 
-## Functions
+## Fonctions
 
 ### createTestingPinia
 
 ▸ **createTestingPinia**(`options?`): [`TestingPinia`](../interfaces/pinia_testing.TestingPinia.md)
 
-Creates a pinia instance designed for unit tests that **requires mocking**
-the stores. By default, **all actions are mocked** and therefore not
-executed. This allows you to unit test your store and components separately.
-You can change this with the `stubActions` option. If you are using jest,
-they are replaced with `jest.fn()`, otherwise, you must provide your own
-`createSpy` option.
+Crée une instance de pinia conçue pour les tests unitaires qui **nécessite un mocking**
+les stores. Par défaut, **toutes les actions sont simulées** et ne sont donc pas
+exécutées. Cela vous permet de tester votre store et vos composants séparément.
+Vous pouvez changer cela avec l'option `stubActions`. Si vous utilisez jest,
+ils sont remplacés par `jest.fn()`, sinon, vous devez fournir votre propre
+option `createSpy`.
 
-#### Parameters
+#### Les paramètres
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | [`TestingOptions`](../interfaces/pinia_testing.TestingOptions.md) | options to configure the testing pinia |
+| `options` | [`TestingOptions`](../interfaces/pinia_testing.TestingOptions.md) | options pour configurer le pinia d'essai |
 
-#### Returns
+#### Renvoie
 
 [`TestingPinia`](../interfaces/pinia_testing.TestingPinia.md)
 
-a augmented pinia instance
+une instance de pinia augmentée
 
-#### Defined in
+#### Défini dans
 
-[packages/testing/src/testing.ts:92](https://github.com/vuejs/pinia/blob/2b998ee/packages/testing/src/testing.ts#L92)
+[testing/src/testing.ts:74](https://github.com/posva/pinia/blob/46c50b2/packages/testing/src/testing.ts#L74)
